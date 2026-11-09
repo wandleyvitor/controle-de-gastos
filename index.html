@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Meus gastos</title>
+    <meta
+      name="description"
+      content="Controle de contas fixas, gastos, limites e compras parceladas, com cores e nome personalizáveis."
+    />
+    <meta name="theme-color" content="#662d54" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="tema.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-row">
+        <div>
+          <small id="eyebrow">Seu controle pessoal</small>
+          <h1 id="title">Meus gastos</h1>
+          <p>Contas fixas, parcelas e pagamentos em um só lugar.</p>
+        </div>
+        <button id="customize" class="customize-btn" type="button">
+          Personalizar
+        </button>
+      </div>
+    </header>
+    <main>
+      <div id="example-bar" class="example-bar" hidden>
+        <span
+          >Você está vendo <strong>dados de exemplo fictícios</strong>. Explore
+          à vontade.</span
+        >
+        <button id="start-empty" type="button" class="smallbtn">
+          Começar do zero
+        </button>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <small>Contas + gastos</small><strong id="total"></strong>
+        </div>
+        <div class="card green">
+          <small>✅ Já pago</small><strong id="paid"></strong>
+        </div>
+        <div class="card">
+          <small>⏳ Pendente</small><strong id="pending"></strong>
+        </div>
+        <div class="card">
+          <small>❓ A confirmar</small><strong id="unknown"></strong>
+        </div>
+      </div>
+      <p class="muted">
+        O total soma contas e gastos registrados nos limites. Limite disponível
+        não é dívida. Lançamentos nos limites são gastos já realizados e entram
+        em “Já pago”. Não representa seu saldo bancário.
+      </p>
+      <section class="panel resumo" aria-labelledby="resumo-titulo">
+        <h2 id="resumo-titulo">Resumo</h2>
+        <div id="resumo-vazio" class="muted" hidden>
+          Os gráficos aparecem quando houver contas cadastradas.
+        </div>
+        <div id="resumo-graficos" class="resumo-grid">
+          <div class="resumo-bloco">
+            <h3>Situação do total</h3>
+            <div id="g-situacao"></div>
+          </div>
+          <div class="resumo-bloco">
+            <h3>Para onde vai o dinheiro</h3>
+            <div id="g-contas"></div>
+          </div>
+        </div>
+      </section>
+      <div id="lists"></div>
+      <div id="dica" role="tooltip" hidden></div>
+      <section class="panel">
+        <h2>Adicionar uma conta</h2>
+        <form id="add" class="form">
+          <label
+            >Nome<input
+              id="name"
+              maxlength="120"
+              required
+              placeholder="Ex.: compra de mercado" /></label
+          ><label
+            >Valor ou parcela (R$)<input
+              id="amount"
+              type="number"
+              min="0.01"
+              step="0.01"
+              required /></label
+          ><label
+            >Grupo<select id="group">
+              <option value="fixed">Conta fixa</option>
+              <option value="other">Outros gastos / parcelas</option>
+            </select></label
+          ><label
+            >Tipo<select id="kind">
+              <option value="bill">Conta simples</option>
+              <option value="limit">Limite de gastos</option>
+              <option value="extras">Mensalidade com extras</option>
+              <option value="parcel">Compra parcelada</option>
+            </select></label
+          ><button class="primary">Adicionar</button>
+        </form>
+      </section>
+      <div class="actions">
+        <button id="export">Exportar backup completo</button
+        ><button id="import">Importar backup</button
+        ><input id="file" type="file" accept="application/json" hidden />
+      </div>
+      <div id="toast" role="status" aria-live="polite"></div>
+      <p class="muted">
+        Suas alterações ficam salvas neste navegador e aparelho. Exporte um
+        backup para não perder os dados ao limpar o navegador ou trocar de
+        aparelho. O backup desta tela inclui todas as contas, valores e
+        situações.
+      </p>
+      <p class="muted privacidade">
+        🔒 Seus gastos ficam só neste aparelho. Nada é enviado para a internet
+        e ninguém mais tem acesso.
+      </p>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
